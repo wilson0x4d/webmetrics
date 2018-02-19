@@ -9,7 +9,7 @@ if (!$ignoreErrors)
 
 if ([System.String]::IsNullOrEmpty($configuration))
 {
-	$configuration = "Release"
+	$configuration = "Debug"
 }
 
 $appcmd = $($env:SystemRoot + "\System32\inetsrv\appcmd.exe")

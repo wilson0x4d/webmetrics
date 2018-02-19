@@ -10,7 +10,7 @@ if (!$ignoreErrors)
 
 if ([System.String]::IsNullOrEmpty($configuration))
 {
-	$configuration = "Release"
+	$configuration = "Debug"
 }
 
 # TODO: consider using something like `vswhere` or `vssetup.powershell` to resolve MSBuild tools location.
