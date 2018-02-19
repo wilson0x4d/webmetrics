@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>Shaun Wilson</owners>
+		<licenseUrl>http://github.com/wilson0x4d/webmetrics/blob/master/LICENSE.md</licenseUrl>
+		<projectUrl>http://github.com/wilson0x4d/webmetrics</projectUrl>
+		<iconUrl>https://avatars0.githubusercontent.com/u/3208827</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+		<copyright>Copyright (C) Shaun Wilson</copyright>
+		<tags>web metrics httpmodule</tags>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" />
+			<frameworkAssembly assemblyName="System.Web" />
+		</frameworkAssemblies>
+	</metadata>
+	<files>
+		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.dll" target="lib\net20\X4D.WebMetrics.dll" />
+		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.pdb" target="lib\net20\X4D.WebMetrics.pdb" />
+		<file src="X4D.WebMetrics\nupkg-web.config.install.xdt" target="content\web.config.install.xdt" />
+		<file src="X4D.WebMetrics\nupkg-web.config.uninstall.xdt" target="content\web.config.uninstall.xdt" />
+	</files>
+</package>
