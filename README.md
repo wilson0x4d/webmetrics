@@ -10,7 +10,7 @@ A thin `System.Web` based solution for gathering and observing metrics about con
 * [Build and Deploy](#build-and-deploy)
 	* [Scripted Installation with `Install-WebMetrics.ps1`](#scripted-installation-with-install-webmetricsps1)
 	* [Scripted Uninstallation with `Uninstall-WebMetrics.ps1`](#scripted-uninstallation-with-uninstall-webmetricsps1)
-	* [Manual Steps](#manual-steps)
+	* [Manual Install / Uninstall](#manual-install-uninstall)
 * [Customization / Restyling](#customization-restyling)
 * [Configuration](#configuration)
 * [Solution Overview](#solution-overview)
@@ -30,7 +30,7 @@ For maximum compatibility core projects target .NET Framework v2.0, this ensures
 
 ## Build and Deploy
 
-Be aware that a scripted deployment requires Administrative privileges. If you do not have Administrative privileges (or cannot log into the target machine(s) to execute scripts) you will want to review the [Manual Installation Steps](#manual-installation).
+Be aware that a scripted deployment requires Administrative privileges. If you do not have Administrative privileges (or cannot log into the target machine(s) to execute scripts) you will want to review the [Manual Installation Steps](#manual-install-uninstall).
 
 Building does *not* require Administrative privileges, but you will require MSBuild v12.0 or later (ie. VS2013, VS2015 or VS2017 and associated build tools.) If you experience problems building from the command-line please submit an issue on Github.
 
@@ -83,57 +83,63 @@ cp .\X4D.WebMetrics\bin\Debug\X4D.WebMetrics.dll
 .\Uninstall-WebMetrics.ps1 -ExcludeGac
 ```
 
-### Manual Steps
-
-If for some reason you experience problems with a scripted installation/uninstallation, consider the following, these steps can be reviewed in order to perform a manual installation.
-
-
-#### Manual Installation
+### Manual Install / Uninstall
 
 The included Install/Uninstall scripts are designed to install an assembly in the GAC and then register the module globally for all IIS apps, which may not be desired. 
 
-This section is an attempt to provide users with enough information to install the module to a single, specific application (useful in shared environments or, perhaps, developer workstations where this module might get in the way of other work.)
+If for some reason you have a problem with a scripted installation/uninstallation, consider the following, this information can be applied to perform a manual installation.
 
-Installation is a matter of copying the `X4D.WebMetrics.dll` assembly to an appropriate location in your app (ie. the /bin/ folder) and then registering the `WebMetricsHttpModule` with the ASP.&shy;NET Runtime via the appropriate `web.config` file.
-
-Instead of manually copying the assembly you may reference the assembly like any other from your development project, an assembly reference would then allow you to package and deploy the assembly with the rest of your web site.
+If this information can be improved please submit an issue or pull request on Github.
 
 
-##### Registering in an Integrated Mode Application/Pool
+#### Manual Installation Steps
 
-For an Integrated Mode application, add or update the follwoing config section in your `web.config`:
+1. Copying the `X4D.WebMetrics.dll` assembly to an appropriate location in your app (ie. the /bin/ folder.) 
+2. Register the `WebMetricsHttpModule` with the ASP.&shy;NET runtime via the appropriate `web.config` file.
+
+> NOTE: Instead of manually copying the assembly you may reference the assembly like any other from your development project, an assembly reference will allow you to package and deploy the assembly with the rest of your web site.
+
+
+#### Manual Uninstallation Steps
+
+1. Remove the `WebMetricsHttpModule` registration from `web.config` file.
+2. Remove the `X4D.WebMetrics.dll` assembly from the app (ie. the /bin/ folder.)
+
+> NOTE: If you used an assembly reference to package and deploy `X4D.WebMetrics.dll`, simply removing the reference and then re-publishing your site should be sufficient.
+
+If after an uninstallation (including after subsequent re-installation) you experience problems unloading a prior version of the module simply issue an `iisreset` and reverify affected apps are working as intended.
+
+
+#### Registering in an Integrated Mode Application/Pool
+
+For an Integrated Mode application, add or update the following config section in your `web.config`:
 
 ```xml
 <configuration>
     <system.webServer>
         <modules>
-            <add name="X4D_WebMetrics" type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics" />
+            <add name="X4D_WebMetrics" 
+                 type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics" />
         </modules>
     </system.webServer>
 </configuration>
 ```
 
 
-##### Registering in a Classic Mode Application/Pool
+#### Registering in a Classic Mode Application/Pool
 
-For a Classic Mode application, add or update the follwoing config section in your `web.config`:
+For a Classic Mode application, add or update the following config section in your `web.config`:
 
 ```xml
 <configuration>
     <system.web>
         <httpModules>
-            <add name="X4D_WebMetrics" type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics" />
+            <add name="X4D_WebMetrics" 
+                 type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics" />
         </httpModules>
     </system.web>
 </configuration>
 ```
-
-
-#### Manual Uninstallation
-
-To uninstall, simply remove the above registrations and then (optionally) either remove the assembly reference from your web project, or if manually copied, delete the assembly from the application /bin/ folder.
-
-If after an uninstallation (including an re-installation) you experience problems unloading a prior version of the module please issue an `iisreset` and reverify.
 
 
 ## Customization / Restyling
