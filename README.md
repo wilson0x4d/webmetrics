@@ -90,13 +90,13 @@ If for some reason you experience problems with a scripted installation/uninstal
 
 #### Manual Installation
 
-The included Install/Uninstall scripts are designed to install an assembly in the GAC and then enregister the module globally for all IIS apps, which may not be desired. 
+The included Install/Uninstall scripts are designed to install an assembly in the GAC and then register the module globally for all IIS apps, which may not be desired. 
 
 This section is an attempt to provide users with enough information to install the module to a single, specific application (useful in shared environments or, perhaps, developer workstations where this module might get in the way of other work.)
 
 Installation is a matter of copying the `X4D.WebMetrics.dll` assembly to an appropriate location in your app (ie. the /bin/ folder) and then registering the `WebMetricsHttpModule` with the ASP.&shy;NET Runtime via the appropriate `web.config` file.
 
-Instead of manually copying the assembly you may instead reference the assembly like any other from your development project, would then allow you to package and deploy the assembly with the rest of your web site.
+Instead of manually copying the assembly you may reference the assembly like any other from your development project, an assembly reference would then allow you to package and deploy the assembly with the rest of your web site.
 
 
 ##### Registering in an Integrated Mode Application/Pool
@@ -133,6 +133,8 @@ For a Classic Mode application, add or update the follwoing config section in yo
 
 To uninstall, simply remove the above registrations and then (optionally) either remove the assembly reference from your web project, or if manually copied, delete the assembly from the application /bin/ folder.
 
+If after an uninstallation (including an re-installation) you experience problems unloading a prior version of the module please issue an `iisreset` and reverify.
+
 
 ## Customization / Restyling
 
@@ -142,7 +144,7 @@ It is also injected with a few CSS Classes that you can use to restyle the injec
 
 | CSS Class | Description |
 |-|-|
-| `x4d-webmetrics` | Applied to an outermost `<div/>` which encapsulates all other content. Apply `!important` overrides to relocate or resize the content. |
+| `x4d-webmetrics` | Applied to an outermost `<div/>` which encapsulates all other content.<br/>Apply `!important` overrides to relocate or resize the content. |
 | `x4d-timemetrics` | Applied to the inner `<div/>` containing request timing metrics. |
 | `x4d-sizemetrics` | Applied to the inner `<div/>` containing min, max and average size metrics. |
 | `x4d-miscmetrics` | Applied to the inner `<div/>` containing request count and request rate metrics. |
