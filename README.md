@@ -1,5 +1,5 @@
 # X4D WebMetrics 
-<img src="https://ci.appveyor.com/api/projects/status/ljbqrs82depunl04?svg=true" />
+[![Build status](https://ci.appveyor.com/api/projects/status/ljbqrs82depunl04/branch/master?svg=true)](https://ci.appveyor.com/project/wilson0x4d/webmetrics/branch/master)
 
 A thin `System.Web` based solution for gathering and observing metrics about content served in an ASP.&shy;NET Web Application.
 
