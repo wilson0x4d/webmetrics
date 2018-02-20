@@ -111,7 +111,7 @@ namespace X4D.WebMetrics.IO
 
 		/// <summary>
 		/// Gets a value indicating that <see cref="Write"/> is supported.
-		/// <para>Returns false.</para>
+		/// <para>Returns true.</para>
 		/// </summary>
 		public override bool CanWrite => true;
 
