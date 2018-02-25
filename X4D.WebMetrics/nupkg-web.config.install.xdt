@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <system.web>
+        <httpModules>
+            <add name="X4D_WebMetrics"
+                xdt:Transform="Remove" xdt:Locator="Match(name)" />
+            <add name="X4D_WebMetrics" type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics"
+                xdt:Transform="Insert" xdt:Locator="Match(name)" />
+        </httpModules>
+    </system.web>
     <system.webServer>
         <modules>
             <add name="X4D_WebMetrics"
                 xdt:Transform="Remove" xdt:Locator="Match(name)" />
-            <add name="X4D_WebMetrics" type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics"
+            <add name="X4D_WebMetrics" type="X4D.WebMetrics.WebMetricsHttpModule,X4D.WebMetrics" preCondition="integratedMode"
                 xdt:Transform="Insert" xdt:Locator="Match(name)" />
         </modules>
     </system.webServer>
