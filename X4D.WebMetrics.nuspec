@@ -21,7 +21,7 @@
 	<files>
 		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.dll" target="lib\net20\X4D.WebMetrics.dll" />
 		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.pdb" target="lib\net20\X4D.WebMetrics.pdb" />
-		<file src="X4D.WebMetrics\nupkg-web.config.install.xdt" target="content\web.config.install.xdt" />
-		<file src="X4D.WebMetrics\nupkg-web.config.uninstall.xdt" target="content\web.config.uninstall.xdt" />
+		<file src="X4D.WebMetrics\nupkg-web.config.install.xdt" target="content\Web.config.install.xdt" />
+		<file src="X4D.WebMetrics\nupkg-web.config.uninstall.xdt" target="content\Web.config.uninstall.xdt" />
 	</files>
 </package>

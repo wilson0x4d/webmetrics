@@ -53,8 +53,8 @@
     <Compile Include="WebMetricsRequestState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="nupkg-web.config.install.xdt" />
-    <None Include="nupkg-web.config.uninstall.xdt" />
+    <None Include="nupkg-Web.config.install.xdt" />
+    <None Include="nupkg-Web.config.uninstall.xdt" />
     <None Include="x4d-webmetrics.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
