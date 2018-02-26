@@ -16,7 +16,6 @@ A thin `System.Web` based solution for gathering and observing metrics about con
 * [Solution Overview](#solution-overview)
 	* [Project: X4D.WebMetrics](#project-x4dwebmetrics)
 	* [Project: X4D.WebMetrics.Tests](#project-x4dwebmetricstests)
-	* [Project: X4D.WebMetrics.TestWeb](#project-x4dwebmetricstestweb)
 
 <!-- /code_chunk_output -->
 
@@ -175,9 +174,3 @@ Coded tests which can be used to verify various component behaviors.
 
 Requires .NET Framework 4.7 or later and a C# 7.x compatible compiler. The .NET Framework can be retargeted if desired.
 
-
-### Project: X4D.WebMetrics.TestWeb
-
-A generic ASP.&shy;NET Web Forms scaffold which allows for manual testing of the HTTP Module. This is not a required resource, it is only provided for developer convenience/QOL.
-
-Requires .NET Framework 4.7 or later and any C# compiler version. The .NET Framework can be retargeted if desired.
