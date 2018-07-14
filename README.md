@@ -1,5 +1,7 @@
 # X4D WebMetrics 
-[![Build status](https://ci.appveyor.com/api/projects/status/ljbqrs82depunl04/branch/master?svg=true)](https://ci.appveyor.com/project/wilson0x4d/webmetrics/branch/master)
+
+[![Build](https://ci.appveyor.com/api/projects/status/ljbqrs82depunl04/branch/master?svg=true)](https://ci.appveyor.com/project/wilson0x4d/webmetrics/branch/master) ![netframework](https://img.shields.io/badge/.net-framework-blue.svg) [![NuGet](https://img.shields.io/nuget/v/X4D.WebMetrics.svg)](https://www.nuget.org/packages/X4D.WebMetrics) [![Downloads](https://img.shields.io/nuget/dt/X4D.WebMetrics.svg)](https://www.nuget.org/api/v2/package/X4D.WebMetrics/)
+
 
 A thin `System.Web` based solution for gathering and observing metrics about content served in an ASP.&shy;NET Web Application.
 
