@@ -17,13 +17,16 @@ namespace X4D.WebMetrics.IO
         /// <![CDATA[`</body>`]]> tag for rewriting.
         /// </summary>
         private static readonly Regex s_matchRegex =
-            new Regex(@"(\</body\>[\s]*\</html\>|\</body\>)[\s]*$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            new Regex(
+                @"(\</body\>[\s]*\</html\>|\</body\>)[\s]*$",
+                RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// a set of supported Content Types, stream content is not rewritten
         /// unless the Content Type matches one of these elements
         /// </summary>
-        private static string[] s_supportedContentTypes = new string[]
+        private static string[] s_supportedContentTypes =
+            new[]
             {
                 "text/html",
                 "text/plain"
@@ -122,11 +125,6 @@ namespace X4D.WebMetrics.IO
         public long ContentLength => _contentLength;
 
         /// <summary>
-        /// Gets the Input Stream Length
-        /// </summary>
-        public override long Length => _inputStream.Length;
-
-        /// <summary>
         /// Gets the current Input Stream Position
         /// <para>Setter is Not Supported</para>
         /// </summary>
@@ -135,6 +133,11 @@ namespace X4D.WebMetrics.IO
             get => _inputStream.Position;
             set => throw new NotSupportedException($"{nameof(HtmlRewriteFilterStream)}.set_{nameof(Position)}");
         }
+
+        /// <summary>
+        /// Gets the Input Stream Length
+        /// </summary>
+        public override long Length => _inputStream.Length;
 
         /// <summary>
         /// Closes the Stream, after calling <see cref="Flush"/>.
@@ -258,7 +261,7 @@ namespace X4D.WebMetrics.IO
         {
             requestState.ObserveResponse(HttpContext.Current.Response);
             aggregateState.ObserveRequestState(requestState);
-            var avgRequestsPerMinute = (int)Math.Floor(aggregateState.TotalObservedRequests / aggregateState.TotalObservedTime.TotalMinutes);
+            var avgRequestsPerMinute = aggregateState.TotalObservedRequests.Value / (aggregateState.TotalObservedTime.Value + 1);
             return
                 $@"<div class=""x4d-webmetrics"" style=""position:fixed;bottom:8px;right:8px;z-index:93600;text-align:right;font-size:0.7em"">" +
                 $@"<div class=""x4d-timemetrics"">Request {requestState.RequestMilliseconds}ms, " +
@@ -267,8 +270,8 @@ namespace X4D.WebMetrics.IO
                 $@"Max {aggregateState.ResponseBodyLengthMaximum}bytes, " +
                 $@"Avg. {aggregateState.ResponseBodyLengthAverage}bytes</div>" +
                 $@"<div class=""x4d-miscmetrics"">{aggregateState.TotalObservedRequests} requests @ " +
-                $"{(avgRequestsPerMinute > aggregateState.TotalObservedRequests ? aggregateState.TotalObservedRequests : avgRequestsPerMinute)}req/min</div></div></body>" +
-                $"{(matchValue.Contains("</html>") ? "</html>" : default(string))}";
+                $"{(avgRequestsPerMinute > aggregateState.TotalObservedRequests.Value ? aggregateState.TotalObservedRequests.Value : avgRequestsPerMinute)}req/min</div></div></body>" +
+                $"{(matchValue.Contains("</html>") ? "</html>" : default)}";
         }
 
         /// <summary>
@@ -308,8 +311,7 @@ namespace X4D.WebMetrics.IO
         /// rewrites, and then writes rewritten content to Output Stream.
         /// </summary>
         /// <param name="allowReadToEnd"></param>
-        private void WriteBufferedInputToOutput(
-            bool allowReadToEnd = false)
+        private void WriteBufferedInputToOutput(bool allowReadToEnd = false)
         {
             var writePosition = _inputStream.Position;
             if (_readPosition == writePosition)

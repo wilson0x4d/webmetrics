@@ -26,12 +26,11 @@ namespace X4D.WebMetrics
 
         private readonly Stopwatch _requestStopwatch;
 
-        private string _requestUri;
+        private readonly string _requestUri;
 
         private long _responseBodyLength;
 
-        public WebMetricsRequestState(
-            string requestUri)
+        public WebMetricsRequestState(string requestUri)
         {
             _requestUri = requestUri;
             _requestStopwatch = new Stopwatch();

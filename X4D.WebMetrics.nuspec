@@ -18,7 +18,11 @@
 			<frameworkAssembly assemblyName="System.Web" />
 		</frameworkAssemblies>
 	</metadata>
-	<files>
+    <dependencies>
+        <dependency id="X4D.Diagnostics" version="(0.1.0.0,0.2.0.0)" exclude="Build,Analyzers" />
+        <dependency id="X4D.Diagnostics.Counters" version="(0.1.0.0,0.2.0.0)" exclude="Build,Analyzers" />
+    </dependencies>
+    <files>
 		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.dll" target="lib\net461\X4D.WebMetrics.dll" />
 		<file src="X4D.WebMetrics\bin\$configuration$\X4D.WebMetrics.pdb" target="lib\net461\X4D.WebMetrics.pdb" />
 		<file src="X4D.WebMetrics\nupkg-web.config.install.xdt" target="content\Web.config.install.xdt" />

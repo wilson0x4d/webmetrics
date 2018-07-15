@@ -10,8 +10,9 @@ namespace X4D.WebMetrics
         /// An aggregate view of statistics gathered by this instance of the
         /// module in the current appdomain.
         /// </summary>
-        private static readonly WebMetricsAggregateState _aggregateState =
-            new WebMetricsAggregateState();
+        private static readonly WebMetricsAggregateState s_aggregateState =
+            new WebMetricsAggregateState(
+                AppDomain.CurrentDomain.FriendlyName);
 
         /// <summary>
         /// the <see cref="HttpContext.Items"/> key used to ferry request state
@@ -49,20 +50,16 @@ namespace X4D.WebMetrics
             //       compressed content
             if (AppDomain.CurrentDomain.FriendlyName.Contains("/W3SVC/"))
             {
-                HttpContext.Current.Request.Headers.Remove(
-                    "Accept-Encoding");
-                HttpContext.Current.Request.Headers.Add(
-                    "Accept-Encoding",
-                    "identity");
+                HttpContext.Current.Request.Headers.Remove("Accept-Encoding");
+                HttpContext.Current.Request.Headers.Add("Accept-Encoding", "identity");
             }
-            var requestState = new WebMetricsRequestState(
-                HttpContext.Current.Request.RawUrl);
+            var requestState = new WebMetricsRequestState(HttpContext.Current.Request.RawUrl);
             HttpContext.Current.Items[HTTPCONTEXT_WEBMETRICS_REQUESTSTATE_KEY] = requestState;
             HttpContext.Current.Response.BufferOutput = true;
             HttpContext.Current.Response.Filter = new IO.HtmlRewriteFilterStream(
                 HttpContext.Current.Response,
                 requestState,
-                _aggregateState);
+                s_aggregateState);
             requestState.ObserveBeginRequest();
         }
 
@@ -72,8 +69,7 @@ namespace X4D.WebMetrics
         /// </summary>
         private void OnPreRequestHandlerExecute(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Items[HTTPCONTEXT_WEBMETRICS_REQUESTSTATE_KEY]
-                is WebMetricsRequestState requestState)
+            if (HttpContext.Current.Items[HTTPCONTEXT_WEBMETRICS_REQUESTSTATE_KEY] is WebMetricsRequestState requestState)
             {
                 requestState.ObserveBeginRequestHandler();
             }

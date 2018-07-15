@@ -56,6 +56,12 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="X4D.Diagnostics, Version=0.1.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\X4D.Diagnostics.0.1.0.8\lib\net461\X4D.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="X4D.Diagnostics.Counters, Version=0.1.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\X4D.Diagnostics.Counters.0.1.0.8\lib\net461\X4D.Diagnostics.Counters.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\HtmlRewriteFilterStreamTests.cs" />

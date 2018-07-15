@@ -29,7 +29,7 @@ namespace X4D.WebMetrics.Test.IO
             using (var responseFilterStream = new HtmlRewriteFilterStream(
                 new System.Web.HttpResponse(new StreamWriter(actualStream)),
                 new WebMetricsRequestState(@"http://localhost"),
-                new WebMetricsAggregateState()))
+                new WebMetricsAggregateState(nameof(Test))))
             {
                 responseFilterStream.Write(expectedBuffer, 0, expectedBuffer.Length);
                 responseFilterStream.Flush();
@@ -64,7 +64,7 @@ namespace X4D.WebMetrics.Test.IO
             using (var responseFilterStream = new HtmlRewriteFilterStream(
                 new System.Web.HttpResponse(new StreamWriter(actualStream)),
                 new WebMetricsRequestState(@"http://localhost"),
-                new WebMetricsAggregateState()))
+                new WebMetricsAggregateState(nameof(Test))))
             {
                 responseFilterStream.Write(expectedBuffer, 0, expectedBuffer.Length);
                 responseFilterStream.Flush();
