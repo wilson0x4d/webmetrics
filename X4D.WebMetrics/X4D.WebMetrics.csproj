@@ -55,11 +55,11 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="X4D.Diagnostics, Version=0.1.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\X4D.Diagnostics.0.1.0.8\lib\net461\X4D.Diagnostics.dll</HintPath>
+    <Reference Include="X4D.Diagnostics, Version=0.1.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\X4D.Diagnostics.0.1.0.9\lib\net461\X4D.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="X4D.Diagnostics.Counters, Version=0.1.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\X4D.Diagnostics.Counters.0.1.0.8\lib\net461\X4D.Diagnostics.Counters.dll</HintPath>
+    <Reference Include="X4D.Diagnostics.Counters, Version=0.1.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\X4D.Diagnostics.Counters.0.1.0.9\lib\net461\X4D.Diagnostics.Counters.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

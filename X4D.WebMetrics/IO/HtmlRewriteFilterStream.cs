@@ -12,6 +12,8 @@ namespace X4D.WebMetrics.IO
     public sealed class HtmlRewriteFilterStream :
         Stream
     {
+        private static readonly long TICKS_PER_MINUTE = TimeSpan.FromMinutes(1).Ticks;
+
         /// <summary>
         /// a Regex applied to stream content to locate HTML
         /// <![CDATA[`</body>`]]> tag for rewriting.
@@ -261,15 +263,15 @@ namespace X4D.WebMetrics.IO
         {
             requestState.ObserveResponse(HttpContext.Current.Response);
             aggregateState.ObserveRequestState(requestState);
-            var avgRequestsPerMinute = aggregateState.TotalObservedRequests.Value / (aggregateState.TotalObservedTime.Value + 1);
+            var avgRequestsPerMinute = (long)(aggregateState.TotalObservedRequests.Value / ((aggregateState.TotalObservedTime.Value / TICKS_PER_MINUTE) + 1));
             return
                 $@"<div class=""x4d-webmetrics"" style=""position:fixed;bottom:8px;right:8px;z-index:93600;text-align:right;font-size:0.7em"">" +
                 $@"<div class=""x4d-timemetrics"">Request {requestState.RequestMilliseconds}ms, " +
                 $@"Handler {requestState.RequestHandlerMilliseconds}ms</div>" +
-                $@"<div class=""x4d-sizemetrics"">Min {aggregateState.ResponseBodyLengthMinimum}bytes, " +
-                $@"Max {aggregateState.ResponseBodyLengthMaximum}bytes, " +
-                $@"Avg. {aggregateState.ResponseBodyLengthAverage}bytes</div>" +
-                $@"<div class=""x4d-miscmetrics"">{aggregateState.TotalObservedRequests} requests @ " +
+                $@"<div class=""x4d-sizemetrics"">Min {aggregateState.ResponseBodyLengthMinimum.Value}bytes, " +
+                $@"Max {aggregateState.ResponseBodyLengthMaximum.Value}bytes, " +
+                $@"Avg. {aggregateState.ResponseBodyLengthAverage.Value}bytes</div>" +
+                $@"<div class=""x4d-miscmetrics"">{aggregateState.TotalObservedRequests.Value} requests @ " +
                 $"{(avgRequestsPerMinute > aggregateState.TotalObservedRequests.Value ? aggregateState.TotalObservedRequests.Value : avgRequestsPerMinute)}req/min</div></div></body>" +
                 $"{(matchValue.Contains("</html>") ? "</html>" : default)}";
         }
