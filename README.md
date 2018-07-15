@@ -26,7 +26,7 @@ A thin `System.Web` based solution for gathering and observing metrics about con
 
 This solution has been verified using Windows 10 Pro 64-bit and a default installation if IIS with all "Application Development Features" enabled. Installation to a server environment should only require Web Server role and the ASP.&shy;NET Feature.
 
-For maximum compatibility core projects target .NET Framework v2.0, this ensures that the resulting assembly can be loaded into both v2.0 and v4.0 runtime environments.
+NOTE: Support for .NET Framework v2.0 was dropped in the interest of integrating with newer systems and libraries where a `net20` package could not be referenced. If you still require a `net20`-compatible package, do not despair, you can still reference [X4D.WebMetrics-0.1.0.40](https://www.nuget.org/packages/X4D.WebMetrics/0.1.0.40) from your legacy projects :)
 
 
 ## Build and Deploy
@@ -167,12 +167,12 @@ There are no configuration files, registry keys, nor appsettings at this time. I
 
 Core product, contains all required components.
 
-Requires .NET Framework 2.0 and a C# 7.x compatible compiler.
+Requires .NET Framework 4.7.2 and a C# 7.x compatible compiler, the .NET Framework can be retargeted if desired but you may experience problems with certain NuGet packages in future builds.
 
 
 ### Project: X4D.WebMetrics.Tests
 
 Coded tests which can be used to verify various component behaviors.
 
-Requires .NET Framework 4.7 or later and a C# 7.x compatible compiler. The .NET Framework can be retargeted if desired.
+Requires .NET Framework 4.7.2 or later and a C# 7.x compatible compiler. The .NET Framework can be retargeted if desired.
 
