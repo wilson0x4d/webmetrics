@@ -10,10 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		Build-WebMetrics.ps1 = Build-WebMetrics.ps1
-		Install-WebMetrics.ps1 = Install-WebMetrics.ps1
 		LICENSE.md = LICENSE.md
 		README.md = README.md
-		Uninstall-WebMetrics.ps1 = Uninstall-WebMetrics.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X4D.WebMetrics.Test", "X4D.WebMetrics.Test\X4D.WebMetrics.Test.csproj", "{8FE1490B-4799-4073-9998-81DCD5668F6A}"

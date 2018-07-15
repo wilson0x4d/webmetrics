@@ -1,7 +1,6 @@
 param(
 	[string] $configuration,
-	[switch] $ignoreErrors,
-	[switch] $deploy)
+	[switch] $ignoreErrors)
 
 if (!$ignoreErrors)
 {
@@ -42,10 +41,4 @@ $assemblyPath = $($(pwd).Path + "\X4D.WebMetrics\bin\$configuration\X4D.WebMetri
 if (![System.IO.File]::Exists($assemblyPath))
 {
 	Write-Error "X4D.WebMetrics.dll not found at expected location, did the build succeed?"
-}
-
-if ($deploy)
-{
-	cp $assemblyPath
-	.\Install-WebMetrics.ps1 -Configuration $configuration
 }
